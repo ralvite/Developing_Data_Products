@@ -1,0 +1,20 @@
+---
+title: "R_leaflet"
+author: "Ramiro Alvite Díaz"
+date: "26 de febrero de 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## R Leaflet Map
+
+
+```{r}
+library(leaflet)
+my_map <- leaflet() %>%
+  addTiles()
+my_map
+```
