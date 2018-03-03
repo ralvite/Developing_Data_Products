@@ -1,0 +1,54 @@
+---
+title: "Untitled"
+author: "Ramiro Alvite Díaz"
+date: "25 de febrero de 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Plotly
+
+## Scatter Plots
+
+```{r cars}
+library(plotly)
+plot_ly(mtcars, x = mtcars$wt, y = mtcars$mpg, mode = "markers", color = as.factor(mtcars$cyl), size = mtcars$hp)
+```
+
+## 3D Plots
+
+```{r pressure, echo=FALSE}
+set.seed(2016-07-21)
+temp <- rnorm(100, mean = 15, sd = 5)
+pressue <- rnorm(100)
+dtime <- 1:100
+plot_ly(x = temp, y = pressue, z = dtime, type = "scatter3d", mode = "markers", color = temp)
+```
+
+## Line Plots
+
+```{r cars}
+library(plotly)
+library(tidyr)
+library(dplyr)
+data("EuStockMarkets")
+stocks <- as.data.frame(EuStockMarkets) %>%
+    gather(index,price) %>%
+    mutate(time=rep(time(EuStockMarkets),4))
+
+plot_ly(stocks,x = stocks$time,y = stocks$price, color = stocks$index, mode="lines")
+
+```
+
+## Heatmaps
+
+```{r}
+terrain1 <- matrix(rnorm(100*100), nrow = 100, ncol = 100)
+plot_ly(z = terrain1, type = "heatmap")
+```
+
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

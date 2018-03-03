@@ -1,0 +1,59 @@
+---
+title: "USGS Earthquake Hazards Program Map"
+author: "Ramiro Alvite Díaz"
+date: "2018-03-03"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE)
+```
+
+
+[Earthquake Hazards Program API](https://earthquake.usgs.gov/fdsnws/event/1/) allows custom searches for earthquake information using a variety of parameters. 
+
+
+```{r}
+library(leaflet)
+# load quakes data from USGS earthquakes API
+quakes <- read.csv("http://earthquake.usgs.gov/fdsnws/event/1/query?starttime=1965-01-01T00:00:00&minmagnitude=6&format=csv&latitude=39.828175&longitude=-98.5795&maxradiuskm=6000&orderby=magnitude")
+
+# make leaflet map using seismic risk data
+seismic_map <- leaflet()
+
+# set breaks for custom bins
+breaks <- c(0,19,39,59,79,200)
+
+# set palette
+binpal <- colorBin("Reds", seismic_map$ACC_VAL, breaks)
+
+# make multi-layered leaflet map with layer-switching control
+# make choropleth map of seismic hazards
+seismic <- seismic_map %>%
+  setView(lng = -108.5795, lat = 39.828175, zoom = 3) %>%
+  addProviderTiles("CartoDB.Positron", group = "CartoDB") %>% 
+  addProviderTiles("Stamen.TonerLite", group = "Toner") %>%
+  
+  # add historical quakes
+  addCircles(
+    data=quakes, 
+    radius = sqrt(10^quakes$mag)*50, 
+    weight = 1.2, 
+    color = "#000000", 
+    fillColor ="#ffffff",
+    fillOpacity = 0.3,
+    popup = paste0("<strong>Magnitude: </strong>", quakes$mag, "</br>",
+                   "<strong>Date: </strong>", format(as.Date(quakes$time), "%b %d, %Y")),
+    group = "Quakes"
+  ) %>%
+  # add layers control
+  addLayersControl(
+    baseGroups = c("CartoDB", "Toner"),
+    overlayGroups = "Quakes",
+    options = layersControlOptions(collapsed = FALSE)
+  )
+
+# draw the map
+seismic
+```
+
