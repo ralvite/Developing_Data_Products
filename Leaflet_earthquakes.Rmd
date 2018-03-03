@@ -1,6 +1,6 @@
 ---
 title: "USGS Earthquake Hazards Program Map"
-author: "Ramiro Alvite Díaz"
+author: "Ramiro Alvite Diaz"
 date: "2018-03-03"
 output: html_document
 ---
