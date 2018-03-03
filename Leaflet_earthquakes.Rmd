@@ -1,6 +1,6 @@
 ---
 title: "USGS Earthquake Hazards Program Map"
-author: "Ramiro Alvite DÃ­az"
+author: "Ramiro Alvite Díaz"
 date: "2018-03-03"
 output: html_document
 ---
@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE)
 ```{r}
 library(leaflet)
 # load quakes data from USGS earthquakes API
-quakes <- read.csv("http://earthquake.usgs.gov/fdsnws/event/1/query?starttime=1965-01-01T00:00:00&minmagnitude=6&format=csv&latitude=39.828175&longitude=-98.5795&maxradiuskm=6000&orderby=magnitude")
+quakes <- read.csv("http://earthquake.usgs.gov/fdsnws/event/1/query?starttime=1965-01-01T00:00:00&minmagnitude=5&format=csv&latitude=41.905740&longitude=12.488879&maxradiuskm=500&orderby=magnitude")
 
 # make leaflet map using seismic risk data
 seismic_map <- leaflet()
@@ -30,7 +30,7 @@ binpal <- colorBin("Reds", seismic_map$ACC_VAL, breaks)
 # make multi-layered leaflet map with layer-switching control
 # make choropleth map of seismic hazards
 seismic <- seismic_map %>%
-  setView(lng = -108.5795, lat = 39.828175, zoom = 3) %>%
+  setView(lng = 12.488879, lat = 41.905740, zoom = 5) %>%
   addProviderTiles("CartoDB.Positron", group = "CartoDB") %>% 
   addProviderTiles("Stamen.TonerLite", group = "Toner") %>%
   
