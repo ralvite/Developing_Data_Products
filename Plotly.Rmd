@@ -1,7 +1,7 @@
 ---
 title: "Untitled"
-author: "Ramiro Alvite Díaz"
-date: "25 de febrero de 2018"
+author: "Ramiro Alvite Diaz"
+date: "2018-03-04"
 output: html_document
 ---
 
@@ -20,7 +20,7 @@ plot_ly(mtcars, x = mtcars$wt, y = mtcars$mpg, mode = "markers", color = as.fact
 
 ## 3D Plots
 
-```{r pressure, echo=FALSE}
+```{r pressure, echo=FALSE, eval=FALSE}
 set.seed(2016-07-21)
 temp <- rnorm(100, mean = 15, sd = 5)
 pressue <- rnorm(100)
@@ -30,7 +30,7 @@ plot_ly(x = temp, y = pressue, z = dtime, type = "scatter3d", mode = "markers", 
 
 ## Line Plots
 
-```{r cars}
+```{r}
 library(plotly)
 library(tidyr)
 library(dplyr)
