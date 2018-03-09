@@ -1,0 +1,19 @@
+---
+title: "R Markdown Plotly Presentation"
+author: "Ramiro Alvite Diaz"
+date: "2018-03-09"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```
+
+## R Plotly Markdown
+
+This is an R Markdown presentation with a plotly chart
+
+```{r cars}
+library(plotly)
+plot_ly(mtcars, x = mtcars$wt, y = mtcars$mpg, mode = "markers", color = as.factor(mtcars$cyl), size = mtcars$hp)
+```
