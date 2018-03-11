@@ -1,0 +1,56 @@
+---
+title: "Diamond prices"
+author: "Ramiro Alvite Diaz"
+date: "2018-03-10"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(ggplot2)
+```
+
+## About
+
+Diamond Carat Weight Measures a Diamond’s Apparent Size. It is the measurement of how much a diamond weighs. A metric “carat” is defined as 200 milligrams. Each carat can be subdivided into 100 ‘points.’ This allows very precise measurements to the hundredth decimal place. A jeweler may describe the weight of a diamond below one carat by its ‘points’ alone. For instance, the jeweler may refer to a diamond that weighs 0.25 carats as a ‘twenty-five pointer.’ Diamond weights greater than one carat are expressed in carats and decimals. A 1.08 carat stone would be described as ‘one point oh eight carats.’  
+
+All else being equal, diamond price increases with diamond carat weight because larger diamonds are more rare and more desirable. But two diamonds of equal carat weight can have very different values (and prices) depending on three other factors of the diamond 4Cs: Clarity, Color, and Cut.  
+
+Source:  
+
+[GIA](http://4cs.gia.edu/en-us/diamond-carat-weight/)
+
+----
+This app allows to estimate diamond price using the carat weight as input. The dataset used `diamonds` is included in the package `ggplot2`, containing the prices and other attributes of almost 54,000 diamonds.  
+
+The functions provided by the app are the following:  
+
+* Explore: allows the user to estimate the price selecting the carat weght as input using the slider. The app run a linear regression model in the server side and predict the new price.
+* Summary: description of model fit
+* Data: explore raw data used by the app
+
+## Linear regresion
+
+
+```{r diamonds, echo = TRUE, warning=FALSE, message=FALSE, fig.height=2.5}
+lm_fit <- lm(price~carat, data=diamonds)
+predicted_df <- data.frame(price_pred = predict(lm_fit, diamonds), carat=diamonds$carat)
+
+ggplot(data = diamonds, aes(x = carat, y = price)) + 
+  geom_point(color='blue') +
+  geom_line(color='red',data = predicted_df, aes(x=carat, y=price_pred)) +
+    xlim(0.20, 2.5) +
+    ylim(300, 20000)
+
+```
+
+
+## Model summary
+
+The model summary is:
+
+```{r, echo = FALSE}
+summary(lm_fit)
+```
+
+

@@ -3,42 +3,37 @@
 library(markdown)
 library(DT)
 
-navbarPage("Project",
-           tabPanel("How to use this tool",
+navbarPage("Diamond price",
+           tabPanel("About",
                     fluidRow(
                         column(6,
                                includeMarkdown("about.md")
                         ),
-                        column(3,
+                        column(3
+                               ,
                                img(class="img-polaroid",
-                                   src=paste0("http://upload.wikimedia.org/",
-                                              "wikipedia/commons/9/92/",
-                                              "1919_Ford_Model_T_Highboy_Coupe.jpg")),
-                               tags$small(
-                                   "Source: Photographed at the Bay State Antique ",
-                                   "Automobile Club's July 10, 2005 show at the ",
-                                   "Endicott Estate in Dedham, MA by ",
-                                   a(href="http://commons.wikimedia.org/wiki/User:Sfoskett",
-                                     "User:Sfoskett")
-                               )
+                                   src="http://4cs.gia.edu/wp-content/uploads/2017/05/Hero-Carat-Weight_700x394.jpg")
                         )
                     )),
            tabPanel("Explore",
                     sidebarLayout(
                         sidebarPanel(
-                            radioButtons("plotType", "Plot type",
-                                         c("Scatter"="p", "Line"="l")
-                            )
+                            sliderInput("sliderCarat", "What is the diamond carat weight?", 0.20, 2.5, value = 0.8)
                         ),
+                        
                         mainPanel(
-                            plotOutput("plot")
+                            plotOutput("plot1"),
+                            h3("Predicted Price from Model:"),
+                            textOutput("pred1")
+                            
                         )
                     )
+                        
            ),
            tabPanel("Summary",
                     verbatimTextOutput("summary")
            ),
-           tabPanel("Table",
+           tabPanel("Data",
                     DT::dataTableOutput("table")
            )
 )

@@ -1,6 +1,23 @@
-### Speed and Stopping Distances of Cars
+### DIAMOND CARAT WEIGHT
 
-The data give the speed of cars and the distances taken to stop. Note that the data were recorded in the 1920s.
+Diamond Carat Weight Measures a Diamond’s Apparent Size  
 
-* **Speed** - speed (mph)
-* **Dist** - stopping distance (ft)
+Diamond carat weight is the measurement of how much a diamond weighs. A metric “carat” is defined as 200 milligrams.  
+
+Each carat can be subdivided into 100 ‘points.’ This allows very precise measurements to the hundredth decimal place. A jeweler may describe the weight of a diamond below one carat by its ‘points’ alone. For instance, the jeweler may refer to a diamond that weighs 0.25 carats as a ‘twenty-five pointer.’ Diamond weights greater than one carat are expressed in carats and decimals. A 1.08 carat stone would be described as ‘one point oh eight carats.’  
+
+All else being equal, diamond price increases with diamond carat weight because larger diamonds are more rare and more desirable. But two diamonds of equal carat weight can have very different values (and prices) depending on three other factors of the diamond 4Cs: Clarity, Color, and Cut.  
+
+It’s important to remember that a diamond’s value is determined using all of the 4Cs, not just carat weight  
+
+This app allows to estimate diamond price using the carat weight as input. The dataset used `diamonds` is included in the package `ggplot2`, containing the prices and other attributes of almost 54,000 diamonds.  
+
+The functions provided by the app are the following:  
+
+* Explore: allows the user to estimate the price selecting the carat weght as input using the slider. The app run a linear regression model in the server side and predict the new price.
+* Summary: description of model fit
+* Data: explore raw data used by the app
+
+Source:  
+
+[GIA](http://4cs.gia.edu/en-us/diamond-carat-weight/)
