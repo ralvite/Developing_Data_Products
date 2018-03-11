@@ -29,6 +29,8 @@ The functions provided by the app are the following:
 * Summary: description of model fit
 * Data: explore raw data used by the app
 
+Code: see ui.R,server.R at https://github.com/ralvite/Developing_Data_Products/tree/gh-pages/course_project
+
 ## Linear regresion
 
 
